@@ -1,0 +1,417 @@
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#020b14;
+    color:#e8faff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow:hidden;
+}
+
+/* TOP BAR */
+.topbar{
+    height:74px;
+    border-bottom:1px solid #00d9ff;
+    background:#03131f;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    box-shadow:0 0 25px rgba(0,220,255,.15);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.car-logo{
+    width:44px;
+    height:44px;
+    border:2px solid #00eaff;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    box-shadow:0 0 15px #00d9ff;
+}
+
+.brand h1{
+    font-size:21px;
+    letter-spacing:.5px;
+}
+
+.brand p{
+    color:#00eaff;
+    font-size:8px;
+    letter-spacing:4px;
+    margin-top:3px;
+}
+
+.live-status{
+    position:absolute;
+    right:18px;
+    color:#00ff9d;
+    font-size:10px;
+    font-weight:bold;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    left:0;
+    top:74px;
+    width:68px;
+    height:calc(100vh - 74px);
+    border-right:1px solid #06455a;
+    background:#03111c;
+    padding-top:8px;
+    z-index:10;
+}
+
+.side-item{
+    height:65px;
+    margin:3px 6px;
+    border:1px solid #07364a;
+    border-radius:8px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    color:#8bb3c0;
+}
+
+.side-item span{
+    font-size:20px;
+}
+
+.side-item small{
+    font-size:6px;
+}
+
+.side-item.active{
+    border-color:#00eaff;
+    color:#00eaff;
+    box-shadow:0 0 12px rgba(0,220,255,.25);
+}
+
+/* MAIN */
+.main-content{
+    margin-left:68px;
+    height:calc(100vh - 74px);
+    padding:20px 28px;
+    overflow:auto;
+}
+
+/* STATUS */
+.status-grid{
+    width:min(1100px,100%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:6px;
+}
+
+.status-card{
+    height:58px;
+    border:1px solid #07516a;
+    border-radius:6px;
+    background:#041522;
+    padding:8px 10px;
+}
+
+.status-card span{
+    display:block;
+    color:#5dddf5;
+    font-size:7px;
+    font-weight:bold;
+}
+
+.status-card strong{
+    display:block;
+    margin-top:7px;
+    font-size:11px;
+}
+
+.status-card select{
+    margin-top:5px;
+    width:100%;
+    background:#03121d;
+    color:white;
+    border:1px solid #00bde5;
+    border-radius:4px;
+    font-size:9px;
+    padding:3px;
+}
+
+/* DESTINATION */
+.destination-bar{
+    width:min(1100px,100%);
+    margin:8px auto 5px;
+    border:1px solid #07516a;
+    border-radius:5px;
+    padding:7px 12px;
+    background:#041522;
+    color:#ff70d5;
+    font-size:9px;
+    font-weight:bold;
+}
+
+/* GAME */
+.game-wrapper{
+    width:min(1100px,100%);
+    height:500px;
+    margin:auto;
+    position:relative;
+    border:1px solid #00bde5;
+    border-radius:6px;
+    overflow:hidden;
+    background:#06131d;
+    box-shadow:0 0 20px rgba(0,210,255,.15);
+}
+
+#gameCanvas{
+    width:100%;
+    height:100%;
+    display:block;
+    background:#06131d;
+}
+
+/* SYSTEM BOX */
+.game-info{
+    position:absolute;
+    top:15px;
+    left:12px;
+    right:12px;
+    z-index:4;
+    pointer-events:none;
+}
+
+.system-box{
+    width:180px;
+    min-height:70px;
+    border:1px solid #00bde5;
+    background:rgba(2,17,28,.9);
+    padding:10px;
+}
+
+.system-box b{
+    display:block;
+    font-size:8px;
+    color:#00eaff;
+}
+
+.system-box span{
+    display:block;
+    font-size:7px;
+    color:#ffe600;
+    margin-top:7px;
+}
+
+.system-box small{
+    display:block;
+    font-size:6px;
+    color:#8aaab5;
+    margin-top:7px;
+}
+
+.camera-label{
+    position:absolute;
+    right:0;
+    top:5px;
+    border:1px solid #00eaff;
+    color:#00eaff;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:7px;
+    background:#03131d;
+}
+
+/* MINIMAP */
+.minimap-box{
+    position:absolute;
+    top:58px;
+    right:8px;
+    width:180px;
+    height:130px;
+    border:1px solid #07516a;
+    background:rgba(2,12,20,.94);
+    z-index:5;
+}
+
+.minimap-title{
+    height:22px;
+    border-bottom:1px solid #07516a;
+    padding:6px 8px;
+    font-size:7px;
+    color:white;
+}
+
+#minimap{
+    width:100%;
+    height:calc(100% - 22px);
+    display:block;
+}
+
+/* CONTROLS */
+.controls-help{
+    position:absolute;
+    bottom:5px;
+    left:50%;
+    transform:translateX(-50%);
+    white-space:nowrap;
+    font-size:7px;
+    color:#8cd8e8;
+    z-index:5;
+}
+
+/* BOTTOM */
+.bottom-grid{
+    width:min(1100px,100%);
+    margin:8px auto;
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:7px;
+}
+
+.info-panel{
+    min-height:72px;
+    border:1px solid #07516a;
+    background:#03131f;
+    border-radius:6px;
+    padding:10px;
+}
+
+.info-panel h3{
+    color:#ff5bd7;
+    font-size:9px;
+    margin-bottom:8px;
+}
+
+.info-panel p{
+    font-size:8px;
+    color:#a8cbd5;
+    margin:4px 0;
+}
+
+.info-panel b{
+    color:#00eaff;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:5px;
+}
+
+button{
+    border:1px solid #00eaff;
+    background:#041923;
+    color:white;
+    padding:9px 22px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:10px;
+}
+
+button:hover{
+    box-shadow:0 0 15px rgba(0,230,255,.5);
+}
+
+.start-btn{
+    background:#073a4b;
+}
+
+.ai-btn{
+    background:#411077;
+    border-color:#d26cff;
+}
+
+.reset-btn{
+    background:#072b3a;
+}
+
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+}
+
+.overlay.show{
+    display:flex;
+}
+
+.overlay-box{
+    width:380px;
+    text-align:center;
+    padding:35px;
+    border:2px solid #00eaff;
+    border-radius:12px;
+    background:#03131f;
+    box-shadow:0 0 40px rgba(0,230,255,.4);
+}
+
+.overlay-box h2{
+    color:#00ffae;
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.overlay-box p{
+    color:#b8dce5;
+    margin-bottom:22px;
+}
+
+.overlay-box button{
+    background:#073e51;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .status-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .bottom-grid{
+        grid-template-columns:1fr;
+    }
+
+    .game-wrapper{
+        height:450px;
+    }
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main-content{
+        margin-left:0;
+        padding:10px;
+    }
+
+    .brand h1{
+        font-size:14px;
+    }
+
+    .live-status{
+        display:none;
+    }
+}

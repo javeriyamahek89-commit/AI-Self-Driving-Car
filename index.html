@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Smart City Driving Simulator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     TOP HEADER
+===================================================== -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="car-logo">🚘</div>
+
+        <div>
+            <h1>AI SMART CITY DRIVING SIMULATOR</h1>
+            <p>DETECT • THINK • DECIDE • DRIVE</p>
+        </div>
+
+    </div>
+
+    <div class="live-status">
+        ● LIVE SIMULATION
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="side-item active">
+        <span>⌂</span>
+        <small>HOME</small>
+    </div>
+
+    <div class="side-item">
+        <span>🚘</span>
+        <small>VEHICLES</small>
+    </div>
+
+    <div class="side-item">
+        <span>🏢</span>
+        <small>BUILDINGS</small>
+    </div>
+
+    <div class="side-item">
+        <span>🛣️</span>
+        <small>ROADS</small>
+    </div>
+
+    <div class="side-item">
+        <span>🚦</span>
+        <small>TRAFFIC</small>
+    </div>
+
+    <div class="side-item">
+        <span>🛡️</span>
+        <small>SAFETY</small>
+    </div>
+
+    <div class="side-item">
+        <span>🗺️</span>
+        <small>MAP</small>
+    </div>
+
+    <div class="side-item">
+        <span>⚙️</span>
+        <small>SETTINGS</small>
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+    <!-- STATUS CARDS -->
+
+    <section class="status-grid">
+
+        <div class="status-card">
+            <span>⚡ SPEED</span>
+            <strong><span id="speedValue">0</span> km/h</strong>
+        </div>
+
+        <div class="status-card">
+            <span>🎮 MODE</span>
+            <strong id="modeValue">MANUAL</strong>
+        </div>
+
+        <div class="status-card">
+            <span>🚦 SIGNAL</span>
+            <strong id="signalValue">GREEN</strong>
+        </div>
+
+        <div class="status-card">
+            <span>🤖 AI STATUS</span>
+            <strong id="aiStatus">READY</strong>
+        </div>
+
+        <div class="status-card">
+            <span>🏆 SCORE</span>
+            <strong id="scoreValue">500</strong>
+        </div>
+
+        <div class="status-card">
+
+            <span>⚡ SPEED LEVEL</span>
+
+            <select id="speedLevel">
+                <option value="1">LOW</option>
+                <option value="2" selected>MEDIUM</option>
+                <option value="3">HIGH</option>
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         DESTINATION
+    ================================================== -->
+
+    <div class="destination-bar">
+
+        📍
+        <span id="destinationText">
+            DESTINATION — CITY TRAINING
+        </span>
+
+    </div>
+
+
+    <!-- =================================================
+         GAME
+    ================================================== -->
+
+    <section class="game-wrapper">
+
+        <div class="game-info">
+
+            <div class="system-box">
+
+                <b>AUTONOMOUS VEHICLE SYSTEM</b>
+
+                <span id="controlText">
+                    ● MANUAL CONTROL
+                </span>
+
+                <small>
+                    SENSORS ONLINE • GPS • LEVEL 1
+                </small>
+
+            </div>
+
+            <div class="camera-label">
+                ● AI CAMERA
+            </div>
+
+        </div>
+
+
+        <canvas id="gameCanvas"></canvas>
+
+
+        <!-- MINIMAP -->
+
+        <div class="minimap-box">
+
+            <div class="minimap-title">
+                ▣ CITY MAP
+            </div>
+
+            <canvas
+                id="minimap"
+                width="240"
+                height="150">
+            </canvas>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="controls-help">
+
+            ↑ / W ACCELERATE
+            &nbsp; | &nbsp;
+
+            ↓ / S BRAKE
+            &nbsp; | &nbsp;
+
+            ← / A TURN LEFT
+            &nbsp; | &nbsp;
+
+            → / D TURN RIGHT
+            &nbsp; | &nbsp;
+
+            SPACE EMERGENCY BRAKE
+            &nbsp; | &nbsp;
+
+            M AI
+            &nbsp; | &nbsp;
+
+            R RESET
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         INFORMATION PANELS
+    ================================================== -->
+
+    <section class="bottom-grid">
+
+        <div class="info-panel">
+
+            <h3>● AI DECISION</h3>
+
+            <p id="aiDecision">
+                Press START and drive your car.
+            </p>
+
+        </div>
+
+
+        <div class="info-panel">
+
+            <h3>⚑ MISSION</h3>
+
+            <p id="missionText">
+                Destination: City Point
+            </p>
+
+            <p>
+                Level: <b id="levelText">LEVEL 1</b>
+            </p>
+
+            <p>
+                Navigation:
+                <b>ACTIVE</b>
+            </p>
+
+        </div>
+
+
+        <div class="info-panel">
+
+            <h3>🤖 AI SYSTEM</h3>
+
+            <p>
+                Detection = <b>ON</b>
+            </p>
+
+            <p>
+                Decision = <b>ACTIVE</b>
+            </p>
+
+            <p>
+                Driving = <b>ACTIVE</b>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         BUTTONS
+    ================================================== -->
+
+    <section class="buttons">
+
+        <button id="startBtn" class="start-btn">
+            ▶ START
+        </button>
+
+        <button id="aiBtn" class="ai-btn">
+            🤖 AI MODE
+        </button>
+
+        <button id="resetBtn" class="reset-btn">
+            ↻ RESET
+        </button>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     LEVEL / GAME OVER OVERLAY
+===================================================== -->
+
+<div id="gameOverlay" class="overlay">
+
+    <div class="overlay-box">
+
+        <h2 id="overlayTitle">
+            GREAT!
+        </h2>
+
+        <p id="overlayMessage">
+            Level completed.
+        </p>
+
+        <button id="nextLevelBtn">
+            NEXT LEVEL
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="game.js"></script>
+
+</body>
+</html>
